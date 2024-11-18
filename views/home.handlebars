@@ -1,0 +1,23 @@
+<h1>Welcome to the Blog!</h1>
+
+{{#if posts}}
+  <ul>
+    {{#each posts}}
+      <li><a href="/post/{{this.id}}">{{this.title}}</a>
+        -
+        {{this.createdAt}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No posts yet!</p>
+{{/if}}
+
+{{#if session.userId}}
+  <a href="/dashboard">Dashboard</a>
+  |
+  <a href="/logout">Logout</a>
+{{else}}
+  <a href="/login">Login</a>
+  |
+  <a href="/signup">Sign Up</a>
+{{/if}}
