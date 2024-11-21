@@ -1,6 +1,6 @@
 // User signup and login, session is created. Logout, session is destroyed.
 const express = require("express");
-const { User } = require("../db/models");
+const { User } = require("../models/user");
 const bcrypt = require("bcryptjs");
 const router = express.Router(); // Initialize a new router
 

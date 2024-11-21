@@ -1,5 +1,7 @@
 const express = require("express");
-const { Post, Comment, User } = require("../db/models");
+const { Comment } = require("../models/Comment");
+const { User } = require("../models/user");
+const { Post } = require("../models/Post");
 const router = express.Router(); // Initialize a new router
 
 // Get all posts for the dashboard

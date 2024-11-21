@@ -1,6 +1,8 @@
 // Handle HTTP requests
 const express = require("express");
-const { Post, Comment, User } = require("../models");
+const { Comment } = require("../models/Comment");
+const { Post } = require("../models/Post");
+const { User } = require("../models/user");
 const router = express.Router();
 
 // Homepage for all posts
