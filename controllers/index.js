@@ -5,6 +5,10 @@ const postRoutes = require("./Post"); // Import post routes
 
 const router = express.Router(); // Create a router instance
 
+router.get("/", (req, res) => {
+  res.render("home"); // Render the home page, or you could add more logic here if needed
+});
+
 // Define all routes
 router.use("/", userRoutes); // User routes (signup, login, logout)
 router.use("/blog", blogRoutes); // Blog routes (homepage, post view, etc.)

@@ -10,6 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Handlebars setup
+
 app.engine("handlebars", exphbs.engine()); // Correct initialization
 app.set("view engine", "handlebars");
 
@@ -19,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Session setup
 const sess = {
-  secret: process.env.SESSION_SECRET || 'defaultSecretKey',  // Use default key if not set in .env
+  secret: process.env.SESSION_SECRET || "defaultSecretKey", // Use default key if not set in .env
   cookie: {
     maxAge: 1000 * 60 * 30, // 30 minutes
   },
