@@ -1,30 +1,37 @@
 // User signup and login, session is created. Logout, session is destroyed.
 const express = require("express");
-const { User } = require("../models/user");
+const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
-const router = express.Router(); // Initialize a new router
+const router = express.Router();
 
-// Sign up route
-router.get("/signup", (req, res) => {
-  res.render("signup");
-});
+// // Sign up route
+// router.get("/signup", (req, res) => {
+//   res.render("signup");
+// });
 
-router.post("/signup", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
     // Check if user already exists
+    console.log(req.body);
     const existUser = await User.findOne({ where: { username } });
     if (existUser) {
       return res.status(400).send("Username already exists");
     }
     // Create new user
-    const newUser = await User.create({
+    const user = await User.create({
       username,
       password,
+      email,
     });
+
     // Store user info in session
-    req.session.userId = newUser.id;
-    res.redirect("/");
+    req.session.save(() => {
+      req.session.user_id = user.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(user);
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error signing up");
@@ -51,8 +58,12 @@ router.post("/login", async (req, res) => {
       return res.status(400).send("Incorrect password");
     }
     // Store user info in session
-    req.session.userId = user.id;
-    res.redirect("/");
+    req.session.save(() => {
+      req.session.user_id = user.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(user);
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error logging in");

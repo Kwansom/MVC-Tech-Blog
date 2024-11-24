@@ -18,6 +18,7 @@ app.set("view engine", "handlebars"); // tells Express to look for views to rend
 // Middleware
 app.use(express.json()); // Parses incoming JSON data from the request body
 app.use(express.urlencoded({ extended: true })); // Parses URL encoded data from requset body
+app.use(express.static(path.join(__dirname, "public")));
 
 // Session setup
 const sess = {
@@ -25,7 +26,7 @@ const sess = {
   cookie: {
     maxAge: 1000 * 60 * 30, // 30 minutes is how long the session cookie will be valid
   },
-  resave: false, 
+  resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,

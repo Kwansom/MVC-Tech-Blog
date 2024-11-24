@@ -1,40 +1,28 @@
-const express = require("express");
-const { User } = require("../models");
-const bcrypt = require("bcryptjs");
-const router = express.Router();
+const loginFormHandler = async (event) => {
+  event.preventDefault();
+  console.log("testing log-in");
 
-// Render login page
-router.get("/login", (req, res) => {
-  res.render("login");
-});
+  const email = document.querySelector("#email-login").value.trim();
+  const username = document.querySelector("#username-login").value.trim();
+  const password = document.querySelector("#password-login").value.trim();
 
-// Handle login form submission
-router.post("/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
+  if (email && username && password) {
+    // Send a POST request to the API endpoint
+    const response = await fetch("/api/user/login", {
+      method: "POST",
+      body: JSON.stringify({ username, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
-    // Find the user by username
-    const user = await User.findOne({ where: { username } });
-
-    if (!user) {
-      return res.status(400).send("Username not found");
+    if (response.ok) {
+      // If successful, redirect the browser to the profile page
+      document.location.replace("/dashboard");
+    } else {
+      alert(response.statusText);
     }
-
-    // Check if password is correct
-    const validPassword = user.checkPassword(password);
-    if (!validPassword) {
-      return res.status(400).send("Incorrect password");
-    }
-
-    // Store user session
-    req.session.userId = user.id;
-
-    // Redirect to homepage/dashboard
-    res.redirect("/");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error logging in");
   }
-});
+};
 
-module.exports = router;
+document
+  .querySelector("#login-form")
+  .addEventListener("submit", loginFormHandler);

@@ -1,9 +1,13 @@
 <h1>Login to Your Account</h1>
-<form action="/login" method="POST">
+<form id="login-form" action="/login" method="POST">
   <label for="username">Username:</label>
-  <input type="text" name="username" required />
+  <input id="username-login" type="text" name="username" required />
+  <label for="email">Email:</label>
+  <input id="email-login" type="text" name="email" required />
   <label for="password">Password:</label>
-  <input type="password" name="password" required />
+  <input id="password-login" type="password" name="password" required />
   <button type="submit">Login</button>
 </form>
+
+<script src="/js/login.js"></script>
 <p>Don't have an account? <a href="/signup">Sign Up</a></p>

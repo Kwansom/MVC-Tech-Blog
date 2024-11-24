@@ -1,36 +1,31 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User'); // Import the User model
+async function signupFormHandler(event) {
+  event.preventDefault();
 
-// GET route to render the signup form
-router.get('/signup', (req, res) => {
-  res.render('signup'); // Assuming 'signup' is the name of your Handlebars template
-});
+  const username = document.querySelector("#username-signup").value.trim();
+  const email = document.querySelector("#email-signup").value.trim();
+  const password = document.querySelector("#password-signup").value.trim();
 
-// POST route to handle signup form submission
-router.post('/signup', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    // Check if user already exists
-    const existingUser = await User.findOne({ where: { username } });
-    if (existingUser) {
-      return res.status(400).render('signup', {
-        error: 'Username already taken, please choose another one.',
-      });
-    }
-
-    // Create a new user and save to the database
-    const newUser = await User.create({ username, password });
-
-    // Redirect to login page after successful signup
-    res.redirect('/login');
-  } catch (error) {
-    console.error(error);
-    res.status(500).render('signup', {
-      error: 'An error occurred during signup. Please try again later.',
+  // add email
+  if (username && email && password) {
+    const response = await fetch("/api/user", {
+      method: "POST",
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+      headers: { "Content-Type": "application/json" },
     });
-  }
-});
+    if (response.ok) {
+      console.log("success");
 
-module.exports = router;
+      document.location.replace("/dashboard");
+    } else {
+      alert(response.statusText);
+    }
+  }
+}
+
+document
+  .querySelector("#signup-form")
+  .addEventListener("submit", signupFormHandler);

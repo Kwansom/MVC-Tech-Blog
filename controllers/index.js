@@ -1,18 +1,14 @@
-const express = require("express");
-const userRoutes = require("./User"); // Import user routes
-const blogRoutes = require("./Blog"); // Import blog routes
-const postRoutes = require("./Post"); // Import post routes
+const router = require("express").Router();
+const apiRoutes = require("./api");
+const homeRoutes = require("./homeRoutes");
+// const dashboardRoutes = require('./dashboardRoutes');
 
-const router = express.Router(); // Create a router instance
+router.use("/api", apiRoutes);
+router.use("/", homeRoutes);
+// router.use("/dashboard", dashboardRoutes);
 
-router.get("/", (req, res) => {
-  res.render("home"); // Render the home page, or you could add more logic here if needed
+router.use((req, res) => {
+  res.status(404).end();
 });
 
-// Define all routes
-router.use("/", userRoutes); // User routes (signup, login, logout)
-router.use("/blog", blogRoutes); // Blog routes (homepage, post view, etc.)
-router.use("/post", postRoutes); // Post routes (dashboard, create, update, delete)
-
-// Export the router instance
 module.exports = router;
