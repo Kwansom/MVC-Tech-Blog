@@ -59,6 +59,9 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
   res.render("new-post"); // Render the template for creating a new post
 });
 
+router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
+  res.render("edit-post"); // Render the template page for editing a post
+});
 //Belongs in API route
 // POST route to create a new post
 // router.post("/dashboard/new", ensureAuthenticated, async (req, res) => {
