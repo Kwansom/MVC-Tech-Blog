@@ -63,7 +63,7 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
 // POST route to create a new post
 // router.post("/dashboard/new", ensureAuthenticated, async (req, res) => {
 //   try {
-//     const { title, contents } = req.body;
+//     const { title, content } = req.body;
 
 //     // Create a new post linked to the logged-in user
 //     await Post.create({

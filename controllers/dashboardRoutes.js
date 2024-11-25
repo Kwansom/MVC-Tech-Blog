@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/Post"); // Import Post model
-const User = require("../models/User"); // Import User model
-const { ensureAuthenticated } = require("../middleware/auth"); 
+const Post = require("../models/Post"); 
+const User = require("../models/user"); 
+const withAuth = require("../utils/auth");
 
 // Middleware to ensure the user is logged in before accessing the dashboard
-router.use(ensureAuthenticated);
+router.use(withAuth);
 
 // GET route to render the user's dashboard
 router.get("/dashboard", async (req, res) => {

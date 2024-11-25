@@ -1,0 +1,28 @@
+<h2 class="card-header">Edit Post</h2>
+<form class="card-body edit-post-form" id="edit-post-form">
+  <div class="form-row">
+    <label for="post-title" class="form-label">Title</label>
+    <input
+      type="text"
+      id="post-title"
+      name="post-title"
+      class="form-input form-control"
+      value="{{post.title}}"
+    />
+  </div>
+  <div class="form-row">
+    <label class="form-label" for="post-body">Content</label>
+    <input
+      id="post-body"
+      name="post-body"
+      class="form-input form-control"
+      value="{{post.content}}"
+    />
+  </div>
+  <!-- Hidden field to store the post ID -->
+  <input type="hidden" id="post-id" name="post-id" value="{{post.id}}" />
+
+  <button type="submit" class="btn">Save Changes</button>
+</form>
+
+<script src="/js/editpost.js"></script>

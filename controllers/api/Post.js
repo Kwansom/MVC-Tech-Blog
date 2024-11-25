@@ -53,20 +53,40 @@ router.post("/dashboard/:postId", async (req, res) => {
   }
 });
 
-// Create a new blog post
-router.post("/dashboard/post", async (req, res) => {
+router.post("/post", withAuth, async (req, res) => {
   try {
-    const post = await Post.create({
-      title: req.body.title,
-      contents: req.body.contents,
-      userId: req.session.userId,
+    const { title, content } = req.body;
+
+    // Create a new post linked to the logged-in user
+    await Post.create({
+      title,
+      content,
+      userId: req.session.userId, // Use the logged-in user's ID
     });
+
+    // Redirect to the dashboard after post creation
     res.redirect("/dashboard");
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     res.status(500).send("Error creating post");
   }
 });
+
+// Create a new blog post
+// router.post("/post", async (req, res) => {
+//   console.log("testing post");
+//   try {
+//     const post = await Post.create({
+//       title: req.body.title,
+//       content: req.body.content,
+//       userId: req.session.userId,
+//     });
+//     res.redirect("/dashboard");
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error creating post");
+//   }
+// });
 
 // Update an existing blog post
 router.put("/dashboard/post/:id", async (req, res) => {
