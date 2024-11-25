@@ -8,7 +8,7 @@ async function newFormHandler(event) {
     method: "POST",
     body: JSON.stringify({
       title,
-      post_body,
+      content,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -16,7 +16,7 @@ async function newFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace("/dashboard/new");
+    document.location.replace("/dashboard/post");
   } else {
     alert(response.statusText);
   }
