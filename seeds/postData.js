@@ -17,7 +17,7 @@ const postData = [
     title: "OOP VS. ORM",
     content:
       "One is a programming language, while the other translates it and creates a structured map to help developers understand the database structure.",
-    user_id: 2,
+    user_id: 3,
   },
   {
     title: "Coding is art",

@@ -10,10 +10,15 @@ const ensureAuthenticated = require("../utils/auth");
 // Homepage for all posts
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.findAll({
+    const results = await Post.findAll({
       include: User, // include user who posted
       order: [["createdAt", "DESC"]],
     });
+    // Serializing // going thru each item in db make a copy but keep plain version
+    const posts = results.map((item) => {
+      return item.get({ plain: true });
+    });
+    // console.log(posts);
     res.render("home", { posts });
   } catch (err) {
     console.error(err);
@@ -26,13 +31,13 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+// Render signup page
 router.get("/signup", (req, res) => {
-  res.render("signup"); // Assuming 'signup' is the name of your Handlebars template
+  res.render("signup");
 });
-
-router.get("/", (req, res) => {
-  res.render("home");
-});
+// router.get("/", (req, res) => {
+//   res.render("home");
+// });
 
 // Middleware to ensure the user is logged in before accessing the dashboard
 // router.use(ensureAuthenticated);
@@ -41,9 +46,12 @@ router.get("/", (req, res) => {
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   try {
     // Fetch posts created by the logged-in user
-    const posts = await Post.findAll({
+    const results = await Post.findAll({
       where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
+    });
+    const posts = results.map((item) => {
+      return item.get({ plain: true });
     });
 
     // Render the dashboard template, passing the user's posts
@@ -83,25 +91,25 @@ router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
 //   }
 // });
 
-// GET route to render the 'edit post' form
-router.get("/dashboard/edit/:id", ensureAuthenticated, async (req, res) => {
-  try {
-    const postId = req.params.id;
-    const post = await Post.findOne({
-      where: { id: postId, userId: req.session.userId }, // Ensure the post belongs to the logged-in user
-    });
+// // GET route to render the 'edit post' form
+// router.get("/dashboard/edit/:id", ensureAuthenticated, async (req, res) => {
+//   try {
+//     const postId = req.params.id;
+//     const post = await Post.findOne({
+//       where: { id: postId, userId: req.session.userId }, // Ensure the post belongs to the logged-in user
+//     });
 
-    if (!post) {
-      return res.status(404).send("Post not found");
-    }
+//     if (!post) {
+//       return res.status(404).send("Post not found");
+//     }
 
-    // Render the edit form with the existing post data
-    res.render("edit-post", { post });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error retrieving post");
-  }
-});
+//     // Render the edit form with the existing post data
+//     res.render("edit-post", { post });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error retrieving post");
+//   }
+// });
 
 // Belongs in API route
 // POST route to update an existing post
@@ -200,22 +208,7 @@ router.get("/dashboard/edit/:id", ensureAuthenticated, async (req, res) => {
 //   }
 // });
 
-//Update blog post
-// router.put("/dashboard/post/:id", async (req, res) => {
-//   try {
-//     const post = await Post.findByPk(req.params.id);
-//     if (post.userId !== req.session.userId) {
-//       return res.status(403).send("You are not authorized to edit this post");
-//     }
-//     post.title = req.body.title;
-//     post.contents = req.body.contents;
-//     await post.save();
-//     res.redirect("/dashboard");
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error updating post");
-//   }
-// });
+
 
 // Delete Blog post
 // router.delete("/dashboard/post/:id", async (req, res) => {

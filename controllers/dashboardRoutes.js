@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/Post"); 
-const User = require("../models/user"); 
+const Post = require("../models/Post");
+const User = require("../models/user");
 const withAuth = require("../utils/auth");
 
 // Middleware to ensure the user is logged in before accessing the dashboard
@@ -11,11 +11,13 @@ router.use(withAuth);
 router.get("/dashboard", async (req, res) => {
   try {
     // Fetch posts created by the logged-in user
-    const posts = await Post.findAll({
+    const results = await Post.findAll({
       where: { userId: req.session.userId }, // Assuming user ID is stored in session
       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
     });
-
+    const posts = results.map((item) => {
+      return item.get({ plain: true });
+    });
     // Render the dashboard template, passing the user's posts
     res.render("dashboard", { posts });
   } catch (error) {
@@ -30,15 +32,15 @@ router.get("/dashboard/new", (req, res) => {
 });
 
 // POST route to create a new post
-router.post("/dashboard/new", async (req, res) => {
+router.post("/post", async (req, res) => {
   try {
-    const { title, contents } = req.body;
+    const { title, content } = req.body;
 
     // Create a new post linked to the logged-in user
     await Post.create({
       title,
-      contents,
-      userId: req.session.userId, // Use the logged-in user's ID
+      content,
+      user_id: req.session.user_id, // Use the logged-in user's ID
     });
 
     // Redirect to the dashboard after post creation
@@ -50,13 +52,14 @@ router.post("/dashboard/new", async (req, res) => {
 });
 
 // GET route to render the 'edit post' form
-router.get("/dashboard/edit/:id", async (req, res) => {
+router.get("/edit/:id", async (req, res) => {
   try {
     const postId = req.params.id;
-    const post = await Post.findOne({
-      where: { id: postId, userId: req.session.userId }, // Ensure the post belongs to the logged-in user
+    const result = await Post.findOne({
+      where: { id: postId, user_id: req.session.user_id }, // Ensure the post belongs to the logged-in user
     });
-
+    // Serializing single object
+    const post = result.get({ plain: true });
     if (!post) {
       return res.status(404).send("Post not found");
     }
@@ -69,14 +72,31 @@ router.get("/dashboard/edit/:id", async (req, res) => {
   }
 });
 
-// POST route to update an existing post
-router.post("/dashboard/edit/:id", async (req, res) => {
+//Update blog post
+// router.put("/dashboard/post/:id", async (req, res) => {
+//   try {
+//     const post = await Post.findByPk(req.params.id);
+//     if (post.userId !== req.session.userId) {
+//       return res.status(403).send("You are not authorized to edit this post");
+//     }
+//     post.title = req.body.title;
+//     post.contents = req.body.contents;
+//     await post.save();
+//     res.redirect("/dashboard");
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error updating post");
+//   }
+// });
+
+// PUT route to update an existing post
+router.put("/post/:id", async (req, res) => {
   try {
     const postId = req.params.id;
-    const { title, contents } = req.body;
+    const { title, content } = req.body;
 
     const post = await Post.findOne({
-      where: { id: postId, userId: req.session.userId }, // Ensure the post belongs to the logged-in user
+      where: { id: postId, user_id: req.session.user_id }, // Ensure the post belongs to the logged-in user
     });
 
     if (!post) {
@@ -84,10 +104,10 @@ router.post("/dashboard/edit/:id", async (req, res) => {
     }
 
     // Update the post with new title and contents
-    await post.update({ title, contents });
+    await post.update({ title, content });
 
-    // Redirect to the dashboard after post update
-    res.redirect("/dashboard");
+    // Sending post back
+    res.json(post);
   } catch (error) {
     console.error(error);
     res.status(500).send("Error updating post");

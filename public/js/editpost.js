@@ -17,7 +17,7 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace(`/dashboard/${postId}`); // Redirect to the post page after successful edit
+    document.location.replace(`/dashboard`); // Redirect to the post page after successful edit
   } else {
     alert(response.statusText);
   }
