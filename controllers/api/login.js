@@ -3,8 +3,6 @@ const { User } = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 
-
-
 // Handle login form submission
 router.post("/login", async (req, res) => {
   try {
@@ -24,7 +22,12 @@ router.post("/login", async (req, res) => {
     }
 
     // Store user session
-    req.session.userId = user.id;
+    req.session.save(() => {
+      req.session.user_id = user.id;
+      req.session.logged_in = true;
+
+      res.json({ user: userData, message: "You are now logged in!" });
+    });
 
     // Redirect to homepage/dashboard
     res.redirect("/");

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../../models/User");
+const User = require("../../models/user");
 
 // GET route to render the signup form
 
@@ -19,6 +19,7 @@ router.post("/signup", async (req, res) => {
 
     // Create a new user and save to the database
     const newUser = await User.create({ username, password });
+// Maybe sign user in when created
 
     // Redirect to login page after successful signup
     res.redirect("/login");

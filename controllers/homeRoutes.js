@@ -6,6 +6,7 @@ const Post = require("../models/Post");
 const User = require("../models/user");
 const router = express.Router();
 const ensureAuthenticated = require("../utils/auth");
+const session = require("express-session");
 
 // Homepage for all posts
 router.get("/", async (req, res) => {
@@ -19,7 +20,7 @@ router.get("/", async (req, res) => {
       return item.get({ plain: true });
     });
     console.log(posts);
-    res.render("home", { posts });
+    res.render("home", { posts, session: req.session });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetching posts");
@@ -55,7 +56,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
     });
 
     // Render the dashboard template, passing the user's posts
-    res.render("dashboard", { posts });
+    res.render("dashboard", { posts, session: req.session });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving posts");
