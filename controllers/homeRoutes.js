@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     const posts = results.map((item) => {
       return item.get({ plain: true });
     });
-    // console.log(posts);
+    console.log(posts);
     res.render("home", { posts });
   } catch (err) {
     console.error(err);
@@ -207,8 +207,6 @@ router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
 //     res.status(500).send("Error creating post");
 //   }
 // });
-
-
 
 // Delete Blog post
 // router.delete("/dashboard/post/:id", async (req, res) => {

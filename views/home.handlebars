@@ -3,16 +3,20 @@
 {{#if posts}}
   <ul>
     {{#each posts}}
-      <li><a href="/post/{{this.id}}">{{this.title}}</a>
+      <li><a href="/post/{{id}}">{{title}}</a>
         -
-        {{this.createdAt}}</li>
+        <br />
+        <strong>Posted by: {{User.username}}</strong>
+        <br />
+        <strong>Created at:</strong>
+        {{createdAt}}</li>
     {{/each}}
   </ul>
 {{else}}
   <p>No posts yet!</p>
 {{/if}}
 
-{{#if session.userId}}
+{{#if session.user_id}}
   <a href="/dashboard">Dashboard</a>
   |
   <a href="/logout">Logout</a>
