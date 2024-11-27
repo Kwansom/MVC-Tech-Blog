@@ -29,12 +29,12 @@ router.get("/", async (req, res) => {
 
 // Render login page
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { session: req.session });
 });
 
 // Render signup page
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signup", { session: req.session });
 });
 // router.get("/", (req, res) => {
 //   res.render("home");
@@ -65,11 +65,11 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
 
 // GET route to render the 'new post' form
 router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
-  res.render("new-post"); // Render the template for creating a new post
+  res.render("new-post", { session: req.session }); // Render the template for creating a new post
 });
 
 router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
-  res.render("edit-post"); // Render the template page for editing a post
+  res.render("edit-post", { session: req.session }); // Render the template page for editing a post
 });
 //Belongs in API route
 // POST route to create a new post
