@@ -18,7 +18,7 @@ document
 
       if (response.ok) {
         // Redirect to the dashboard after deleting the post
-        document.location.replace("/dashboard");
+        window.location.replace("/dashboard");
       } else {
         alert("Failed to delete post. Please try again.");
       }

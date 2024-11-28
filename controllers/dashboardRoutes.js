@@ -149,8 +149,7 @@ router.delete("/delete/:id", async (req, res) => {
     // Delete the post from the database
     await post.destroy();
 
-    // Redirect to the dashboard after post deletion
-    res.redirect("/dashboard");
+    res.status(200).send("Post deleted");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error deleting post");
