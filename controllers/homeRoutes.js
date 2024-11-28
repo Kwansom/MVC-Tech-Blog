@@ -1,7 +1,7 @@
 // Rendering pages
 // Handle HTTP requests
 const express = require("express");
-const { Comment } = require("../models/Comment");
+const Comment = require("../models/Comment");
 const Post = require("../models/Post");
 const User = require("../models/user");
 const router = express.Router();
@@ -36,27 +36,29 @@ router.get("/login", (req, res) => {
 router.get("/signup", (req, res) => {
   res.render("signup", { session: req.session });
 });
-// router.get("/", (req, res) => {
-//   res.render("home");
-// });
-
-// Middleware to ensure the user is logged in before accessing the dashboard
-// router.use(ensureAuthenticated);
 
 // GET route to render the user's dashboard
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   try {
     // Fetch posts created by the logged-in user
     const results = await Post.findAll({
-      where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
+      where: { user_id: req.session.user_id }, // user_id is stored in session
       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
     });
+    // maps posts to plain objects
     const posts = results.map((item) => {
       return item.get({ plain: true });
     });
 
+    //Fetching the user data using user_id from session
+    const user = await User.findByPk(req.session.user_id);
+
     // Render the dashboard template, passing the user's posts
-    res.render("dashboard", { posts, session: req.session });
+    res.render("dashboard", {
+      posts,
+      user: user.get({ plain: true }),
+      session: req.session,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving posts");

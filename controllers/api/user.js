@@ -4,6 +4,7 @@ const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 
+// SIGN UP reate new user route!
 router.post("/", async (req, res) => {
   try {
     const { username, password, email } = req.body;

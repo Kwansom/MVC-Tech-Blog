@@ -17,6 +17,7 @@ router.get("/", async (req, res) => {
       where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
     });
+    // Serializing post results data
     const posts = results.map((item) => {
       return item.get({ plain: true });
     });
