@@ -78,13 +78,16 @@ router.get("/edit/:id", async (req, res) => {
 // Get a single post
 router.get("/post/:id", async (req, res) => {
   try {
-    console.log(req.params.id);
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment, include: User }, User], // Include comment, include content and the post creator
     });
 
-    if (!post) return res.status(404).send("Post not found");
-    res.render("single-post", { post }); // Render the post page with the post details
+    if (!post) {
+      return res.status(404).send("Post not found");
+    }
+
+    const postData = post.get({ plain: true });
+    res.render("single-post", { post: postData }); // Render the post page with the post details
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetching post");

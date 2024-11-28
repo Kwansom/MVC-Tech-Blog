@@ -23,7 +23,12 @@
   <input type="hidden" id="post-id" name="post-id" value="{{post.id}}" />
 
   <button type="submit" class="btn">Save Changes</button>
-  <button type="button" id="delete-post-btn" class="btn btn-danger">Delete Post</button>
+  <button
+    type="button"
+    id="delete-post-btn"
+    class="btn btn-danger"
+    name="{{post.id}}"
+  >Delete Post</button>
 </form>
 
 <script src="/js/editpost.js"></script>

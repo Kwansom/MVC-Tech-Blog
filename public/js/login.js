@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
-  console.log("testing log-in");
+  // console.log("testing log-in");
 
   const email = document.querySelector("#email-login").value.trim();
   const username = document.querySelector("#username-login").value.trim();

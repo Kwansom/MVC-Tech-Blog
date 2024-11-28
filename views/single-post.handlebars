@@ -3,7 +3,7 @@
 
 <!-- Write out HTML what to be displayed from post -->
 
-{{#if loggedIn}}
+{{#if session.user_id}}
 <div class="comment-container">
     <h3 class="card-header"></h3>
     <form class="card-body comment-form" id="comment-form">
@@ -20,6 +20,6 @@
 
 </section>
 
-{{#if loggedIn}}
+{{#if session.user_id}}
 <script src="/js/addComment.js"></script>
 {{/if}}

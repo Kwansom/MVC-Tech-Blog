@@ -74,7 +74,7 @@ router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
   res.render("edit-post", { session: req.session }); // Render the template page for editing a post
 });
 
-// Single post and comments
+// GET post and comments
 router.get("/dashboard/post/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
