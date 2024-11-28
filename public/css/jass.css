@@ -4,6 +4,33 @@
   --txt: Helvetica Neue;
 }
 
+.main-nav {
+  font-family: var(--txt);
+  color: black;
+  background-color: orange;
+  padding: 12px 25px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: navajowhite;
+}
+
+footer {
+  position: fixed;
+  right: 23;
+  bottom: 0;
+}
+#main-footer {
+  font-family: var(--txt);
+  font-size: 17px;
+  color: black;
+  background-color: orange;
+  padding: 12px 25px;
+  border-radius: 50px;
+}
+
 main {
   display: flex;
   justify-content: center; /* Center horizontally */
