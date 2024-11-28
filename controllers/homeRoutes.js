@@ -73,6 +73,21 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
 router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
   res.render("edit-post", { session: req.session }); // Render the template page for editing a post
 });
+
+// Single post and comments
+router.get("/dashboard/post/:id", async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id, {
+      include: [{ model: Comment, include: User }, User], // include comments and user
+    });
+    if (!post) return res.status(404).send("Post not found");
+    res.render("single-post", { post });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching post");
+  }
+});
+
 //Belongs in API route
 // POST route to create a new post
 // router.post("/dashboard/new", ensureAuthenticated, async (req, res) => {
@@ -162,20 +177,6 @@ router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
 //   } catch (error) {
 //     console.error(error);
 //     res.status(500).send("Error deleting post");
-//   }
-// });
-
-// // Single post and comments
-// router.get("/post/:id", async (req, res) => {
-//   try {
-//     const post = await Post.findByPk(req.params.id, {
-//       include: [{ model: Comment, include: User }, User], // include comments and user
-//     });
-//     if (!post) return res.status(404).send("Post not found");
-//     res.render("post", { post });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error fetching post");
 //   }
 // });
 
