@@ -1,39 +1,14 @@
-const loginFormHandler = async (event) => {
-    event.preventDefault();
-    console.log("testing log-in");
-  
-    const email = document.querySelector("#email-login").value.trim();
-    const username = document.querySelector("#username-login").value.trim();
-    const password = document.querySelector("#password-login").value.trim();
-  
-    if (email && username && password) {
-      // Send a POST request to the API endpoint
-      const response = await fetch("/api/user/login", {
-        method: "POST",
-        body: JSON.stringify({ username, email, password }),
-        headers: { "Content-Type": "application/json" },
-      });
-  
-      if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        document.location.replace("/dashboard");
-      } else {
-        alert(response.statusText);
-      }
-    }
-  };
-  
-  document
-    .querySelector("#login-form")
-    .addEventListener("submit", loginFormHandler);
-  
-// router.get("/logout", (req, res) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       return res.status(500).send("Error logging out");
-//     }
-//     res.redirect("/");
-//   });
-// });
+async function logout() {
+  const response = await fetch("/api/user/logout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+  });
 
-// Post request similiar to login front end js
+  if (response.ok) {
+    document.location.replace("/");
+  } else {
+    alert(response.statusText);
+  }
+}
+
+document.querySelector(".logout").addEventListener("click", logout);

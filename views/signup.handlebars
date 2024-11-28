@@ -1,12 +1,12 @@
-<h1>Create an Account</h1>
+<h1 id="create-title">Create an Account</h1>
 <form id="signup-form" action="/signup" method="POST">
-  <label for="username">Username:</label>
+  <label for="username" id="username-signup">Username:</label>
   <input id="username-signup" type="text" name="username" required />
-  <label for="email">Email:</label>
+  <label for="email" id="email-signup">Email:</label>
   <input id="email-signup" type="text" name="email" required />
-  <label for="password">Password:</label>
+  <label for="password" id="password-signup">Password:</label>
   <input id="password-signup" type="password" name="password" required />
-  <button type="submit">Sign Up</button>
+  <button type="submit" id="sign-up-btn">Sign Up</button>
 </form>
 
 <script src="/js/signup.js"></script>

@@ -90,7 +90,7 @@ router.post("/post", withAuth, async (req, res) => {
 // });
 
 // Update an existing blog post
-router.put("/dashboard/post/:id", async (req, res) => {
+router.put("/dashboard/post/:id", withAuth, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
 

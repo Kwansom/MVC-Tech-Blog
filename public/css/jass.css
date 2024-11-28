@@ -3,6 +3,15 @@
   --neongreen: #39ff14;
   --txt: Helvetica Neue;
 }
+body {
+  background-image: url("/assets/IMG_6873.JPG");
+  background-repeat: no-repeat;
+  background-size: auto 50%;
+  background-position: right center;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed; /* Optional: Make background fixed when scrolling */
+}
 
 .main-nav {
   font-family: var(--txt);
@@ -211,4 +220,100 @@ textarea.form-input {
 textarea.form-input:focus {
   border-color: #66afe9; /* Optional: highlight the textarea border on focus */
   outline: none; /* Remove default focus outline */
+}
+
+p {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+/* Dashboard New Post */
+
+#new-post-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+  padding-right: 10px;
+}
+
+#new-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#new-content {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#new-post-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#new-post-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
+}
+
+/* Sign up */
+#create-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#signup-form {
+  display: flex;
+  flex-direction: column; /* Arrange the input elements vertically */
+  align-items: center; /* Center form elements horizontally */
+  padding: 20px; /* Add some padding inside the form */
+  border: 2px solid var(--neongreen);
+  border-radius: 10px; /* Optional: rounded corners for the form */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
+  background-color: #fff; /* Optional: Set a background color */
+  max-width: 400px; /* Optional: Set a max-width to prevent the form from being too wide */
+  width: 100%; /* Make sure the form fills its container */
+}
+
+#signup-form input {
+  width: 100%; /* Make input elements fill the form width */
+  padding: 10px; /* Add padding for better input experience */
+  margin: 10px 0; /* Add space between inputs */
+  border: 3px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners for inputs */
+}
+
+#username-signup,
+#email-signup,
+#password-signup {
+  font-family: var(--txt);
+  color: black;
+  font-size: 22px;
+}
+
+#sign-up-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#sign-up-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
 }

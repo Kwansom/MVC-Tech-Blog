@@ -75,7 +75,7 @@ router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
 });
 
 // GET post and comments
-router.get("/dashboard/post/:id", async (req, res) => {
+router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment, include: User }, User], // include comments and user

@@ -19,6 +19,8 @@ app.set("view engine", "handlebars"); // tells Express to look for views to rend
 app.use(express.json()); // Parses incoming JSON data from the request body
 app.use(express.urlencoded({ extended: true })); // Parses URL encoded data from requset body
 app.use(express.static(path.join(__dirname, "public")));
+// Serve static files from the "assets" folder
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 // Session setup
 const sess = {
