@@ -4,16 +4,11 @@ const User = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 
-// // Sign up route
-// router.get("/signup", (req, res) => {
-//   res.render("signup");
-// });
-
 router.post("/", async (req, res) => {
   try {
     const { username, password, email } = req.body;
     // Check if user already exists
-    console.log(req.body);
+    // console.log(req.body);
     const existUser = await User.findOne({ where: { username } });
     if (existUser) {
       return res.status(400).send("Username already exists");
@@ -38,10 +33,10 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Login route
-router.get("/login", async (req, res) => {
-  res.render("login");
-});
+// // Login route
+// router.get("/login", async (req, res) => {
+//   res.render("login");
+// });
 
 router.post("/login", async (req, res) => {
   try {
@@ -71,10 +66,14 @@ router.post("/login", async (req, res) => {
 });
 
 // Handles user log-out route
-router.get("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/"); // Redirect to homepage after logging out
-  });
+router.post("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect("/"); // Redirect to homepage after logging out
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 // Export the router so it can be used in server.js

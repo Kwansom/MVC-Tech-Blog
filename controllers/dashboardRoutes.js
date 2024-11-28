@@ -1,18 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/Post");
-const User = require("../models/user");
+const { Comment, Post, User } = require("../models");
+// const Post = require("../models/Post");
+// const User = require("../models/user");
+// const Comment = require("../")
 const withAuth = require("../utils/auth");
 
 // Middleware to ensure the user is logged in before accessing the dashboard
 router.use(withAuth);
 
 // GET route to render the user's dashboard
-router.get("/dashboard", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     // Fetch posts created by the logged-in user
     const results = await Post.findAll({
-      where: { userId: req.session.userId }, // Assuming user ID is stored in session
+      where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
     });
     const posts = results.map((item) => {
@@ -72,6 +74,22 @@ router.get("/edit/:id", async (req, res) => {
   }
 });
 
+// Get a single post
+router.get("/post/:id", async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const post = await Post.findByPk(req.params.id, {
+      include: [{ model: Comment, include: User }, User], // Include comment, include content and the post creator
+    });
+
+    if (!post) return res.status(404).send("Post not found");
+    res.render("single-post", { post }); // Render the post page with the post details
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching post");
+  }
+});
+
 //Update blog post
 // router.put("/dashboard/post/:id", async (req, res) => {
 //   try {
@@ -114,13 +132,13 @@ router.put("/post/:id", async (req, res) => {
   }
 });
 
-// GET route to delete a post
-router.get("/dashboard/delete/:id", async (req, res) => {
+// Delete route to delete a post
+router.delete("/delete/:id", async (req, res) => {
   try {
     const postId = req.params.id;
 
     const post = await Post.findOne({
-      where: { id: postId, userId: req.session.userId }, // Ensure the post belongs to the logged-in user
+      where: { id: postId, user_id: req.session.user_id }, // Ensure the post belongs to the logged-in user
     });
 
     if (!post) {

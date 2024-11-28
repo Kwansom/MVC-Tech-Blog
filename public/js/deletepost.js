@@ -1,7 +1,7 @@
 document
   .querySelector("#delete-post-btn")
   .addEventListener("click", async (event) => {
-    const postId = document.querySelector('input[name="post-id"]').value;
+    const postId = event.target.getAttribute("name");
 
     // Confirm deletion
     const confirmDelete = window.confirm(
@@ -12,7 +12,7 @@ document
     }
 
     try {
-      const response = await fetch(`/dashboard/post/${postId}`, {
+      const response = await fetch(`/dashboard/delete/${postId}`, {
         method: "DELETE", // Use DELETE method to remove the post
       });
 

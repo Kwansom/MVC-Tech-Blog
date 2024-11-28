@@ -1,11 +1,10 @@
 const express = require("express");
-const userRoutes = require("./User"); // Import user routes
+const userRoutes = require("./user"); // Import user routes
 // const blogRoutes = require("./Blog"); // Import blog routes
-const postRoutes = require("./Post"); // Import post routes
+const postRoutes = require("./post"); // Import post routes
 const commentRoutes = require("./comment");
 
 const router = express.Router(); // Create a router instance
-
 
 // Define all routes
 router.use("/user", userRoutes); // User routes (signup, login, logout)

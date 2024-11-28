@@ -38,6 +38,6 @@ app.use(session(sess));
 // Use routes
 app.use(routes);
 
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });

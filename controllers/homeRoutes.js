@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
     const posts = results.map((item) => {
       return item.get({ plain: true });
     });
-    console.log(posts);
+    // console.log(posts);
     res.render("home", { posts, session: req.session });
   } catch (err) {
     console.error(err);

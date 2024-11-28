@@ -1,19 +1,19 @@
 const express = require("express");
-const { Comment } = require("../../models/Comment");
-const { User } = require("../../models/user");
-const { Post } = require("../../models/Post");
+const Comment = require("../../models/Comment");
+const User = require("../../models/user");
+const Post = require("../../models/Post");
 const router = express.Router(); // Initialize a new router
 const withAuth = require("../../utils/auth");
 
 // Get all posts for the dashboard
 router.get("/dashboard", async (req, res) => {
   try {
-    if (!req.session.userId) {
+    if (!req.session.user_id) {
       return res.redirect("/login");
     }
 
     const posts = await Post.findAll({
-      where: { userId: req.session.userId },
+      where: { userId: req.session.user_id },
       order: [["createdAt", "DESC"]], // Order posts by the newest first
     });
     res.render("dashboard", { posts }); // Render the homepage with the posts
@@ -24,14 +24,14 @@ router.get("/dashboard", async (req, res) => {
 });
 
 // Get post
-router.get("/dashboard/:id", async (req, res) => {
+router.get("/post/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment, include: User }, User], // Include comments and the post creator
     });
 
     if (!post) return res.status(404).send("Post not found");
-    res.render("post", { post }); // Render the post page with the post details
+    res.render("single-post", { post }); // Render the post page with the post details
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetching post");
@@ -43,16 +43,17 @@ router.post("/dashboard/:postId", async (req, res) => {
   try {
     await Comment.create({
       content: req.body.content,
-      postId: req.params.postId,
-      userId: req.session.userId,
+      postId: req.params.post_id,
+      userId: req.session.user_id,
     });
-    res.redirect(`/dashboard/${req.params.postId}`); // Redirect back to the post page
+    res.redirect(`/dashboard/${req.params.post_id}`); // Redirect back to the post page
   } catch (err) {
     console.error(err);
     res.status(500).send("Error creating comment");
   }
 });
 
+// Create new post
 router.post("/post", withAuth, async (req, res) => {
   try {
     const { title, content } = req.body;
@@ -61,7 +62,7 @@ router.post("/post", withAuth, async (req, res) => {
     await Post.create({
       title,
       content,
-      userId: req.session.userId, // Use the logged-in user's ID
+      user_id: req.session.user_id, // Use the logged-in user's ID
     });
 
     // Redirect to the dashboard after post creation
@@ -93,7 +94,7 @@ router.put("/dashboard/post/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
 
-    if (post.userId !== req.session.userId) {
+    if (post.user_id !== req.session.user_id) {
       return res.status(403).send("You are not authorized to edit this post");
     }
 
@@ -113,7 +114,7 @@ router.delete("/dashboard/post/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id);
 
-    if (post.userId !== req.session.userId) {
+    if (post.user_id !== req.session.user_id) {
       return res.status(403).send("You are not authorized to delete this post");
     }
 

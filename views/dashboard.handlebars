@@ -4,12 +4,17 @@
   <ul>
     {{#each posts}}
       <li>
-        <a href="/post/{{this.id}}">{{this.title}}</a>
+        <a href="/dashboard/post/{{this.id}}">{{this.title}}</a>
         -
         {{this.createdAt}}
         <a href="/dashboard/edit/{{this.id}}">Edit</a>
         |
-        <a href="/dashboard/delete/{{this.id}}">Delete</a>
+        <button
+          type="button"
+          id="delete-post-btn"
+          name="{{this.id}}"
+        >Delete</button>
+        {{!-- <a href="/dashboard/delete/{{this.id}}">Delete</a> --}}
       </li>
     {{/each}}
   </ul>
@@ -17,4 +22,5 @@
   <p>No posts yet!</p>
 {{/if}}
 
+<script src="/js/deletepost.js"></script>
 <a href="/dashboard/new">Create a New Post</a>
