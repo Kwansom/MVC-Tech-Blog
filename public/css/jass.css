@@ -19,9 +19,10 @@
 
 footer {
   position: fixed;
-  right: 23;
+  right: 0;
   bottom: 0;
 }
+
 #main-footer {
   font-family: var(--txt);
   font-size: 17px;
@@ -39,7 +40,7 @@ main {
   position: relative;
 }
 
-h1 {
+#home-title {
   font-family: var(--txt);
   text-align: center;
   background-color: orange; /* Orange background for the pill */
@@ -57,7 +58,7 @@ h1 {
   transition: all 0.3s ease;
 }
 
-h1:hover {
+#home-title:hover {
   background-color: navajowhite;
   color: orange;
 }
@@ -92,4 +93,70 @@ li {
 
 a {
   text-decoration: none;
+}
+
+/* Dashboard */
+#user-dash {
+  font-family: var(--txt);
+  text-align: center;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
+  font-size: 2em; /* Adjust font size as needed */
+  width: 50%;
+  max-width: 600px;
+  margin: 20px auto;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+#user-dash:hover {
+  background-color: navajowhite;
+  color: orange;
+}
+
+#create-dash {
+  font-family: var(--txt);
+  font-size: 17px;
+  color: black;
+  background-color: orange;
+  padding: 12px 25px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+#create-dash:hover {
+  background-color: navajowhite;
+  color: orange;
+}
+
+#delete-post-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#delete-post-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
+}
+
+#edit-post-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#edit-post-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
 }

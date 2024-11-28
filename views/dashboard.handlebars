@@ -1,13 +1,18 @@
-<h1>{{user.username}}'s Dashboard</h1>
+<h1 id="user-dash">{{user.username}}'s Dashboard</h1>
 
 {{#if posts}}
   <ul>
     {{#each posts}}
       <li>
-        <a href="/dashboard/post/{{this.id}}">{{this.title}}</a>
+        <a href="/dashboard/post/{{this.id}}"><h2
+            id="post-title"
+          >{{this.title}}</h2></a>
         -
         {{this.createdAt}}
-        <a href="/dashboard/edit/{{this.id}}">Edit</a>
+        <a href="/dashboard/edit/{{this.id}}"><button
+            type="button"
+            id="edit-post-btn"
+          >Edit</button></a>
         |
         <button
           type="button"
@@ -23,4 +28,4 @@
 {{/if}}
 
 <script src="/js/deletepost.js"></script>
-<a href="/dashboard/new">Create a New Post</a>
+<a href="/dashboard/new"> <h3 id="create-dash">Create a New Post</h3></a>
