@@ -25,6 +25,7 @@ footer {
 
 #main-footer {
   font-family: var(--txt);
+  font-style: italic;
   font-size: 17px;
   color: black;
   background-color: orange;
@@ -159,4 +160,55 @@ a {
 #edit-post-btn:hover {
   background-color: var(--neongreen);
   color: orange;
+}
+
+/* Edit Post page */
+#edit-post-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+  padding-right: 10px;
+}
+
+#edit-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#edit-content {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#save-post-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#save-post-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
+}
+
+textarea.form-input {
+  width: 100%; /* Make it take up the full width of the parent container */
+  padding: 10px; /* Add padding for better readability */
+  font-size: 16px; /* Match font size to other inputs */
+  border-radius: 5px; /* Optional: add border radius to match input fields */
+  border: 1px solid #ccc; /* Make border similar to other inputs */
+  resize: vertical; /* Optional: allows users to resize the textarea vertically */
+}
+
+textarea.form-input:focus {
+  border-color: #66afe9; /* Optional: highlight the textarea border on focus */
+  outline: none; /* Remove default focus outline */
 }

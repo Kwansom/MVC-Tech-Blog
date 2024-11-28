@@ -1,28 +1,29 @@
-<h2 class="card-header">Edit Post</h2>
+<h2 class="card-header" id="edit-post-title">Edit Post</h2>
 <form class="card-body edit-post-form" id="edit-post-form">
   <div class="form-row">
-    <label for="post-title" class="form-label">Title</label>
-    <input
+    <label for="post-title" class="form-label" id="edit-title">Title</label>
+    <textarea
       type="text"
       id="post-title"
       name="post-title"
       class="form-input form-control"
-      value="{{post.title}}"
-    />
+    >{{post.title}}</textarea>
   </div>
   <div class="form-row">
-    <label class="form-label" for="post-body">Content</label>
-    <input
+    <label class="form-label" for="post-body" id="edit-content">Content</label>
+    <textarea
       id="post-body"
       name="post-body"
       class="form-input form-control"
-      value="{{post.content}}"
-    />
+      rows="12"
+      cols="108"
+    >{{post.content}}
+    </textarea>
   </div>
   <!-- Hidden field to store the post ID -->
   <input type="hidden" id="post-id" name="post-id" value="{{post.id}}" />
 
-  <button type="submit" class="btn">Save Changes</button>
+  <button type="submit" class="btn" id="save-post-btn">Save Changes</button>
   <button
     type="button"
     id="delete-post-btn"
