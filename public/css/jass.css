@@ -296,9 +296,9 @@ p {
   border-radius: 5px; /* Rounded corners for inputs */
 }
 
-#username-signup,
-#email-signup,
-#password-signup {
+#username-label,
+#email-label,
+#password-label {
   font-family: var(--txt);
   color: black;
   font-size: 22px;
@@ -316,4 +316,47 @@ p {
 #sign-up-btn:hover {
   background-color: var(--neongreen);
   color: orange;
+}
+
+/* Login page */
+#login-title {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+#login-btn {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#login-btn:hover {
+  background-color: var(--neongreen);
+  color: orange;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column; /* Arrange the input elements vertically */
+  align-items: center; /* Center form elements horizontally */
+  padding: 20px; /* Add some padding inside the form */
+  border: 2px solid var(--neongreen);
+  border-radius: 10px; /* Optional: rounded corners for the form */
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
+  background-color: #fff; /* Optional: Set a background color */
+  max-width: 400px; /* Optional: Set a max-width to prevent the form from being too wide */
+  width: 100%; /* Make sure the form fills its container */
+}
+
+#login-form input {
+  width: 100%; /* Make input elements fill the form width */
+  padding: 10px; /* Add padding for better input experience */
+  margin: 10px 0; /* Add space between inputs */
+  border: 3px solid #ccc; /* Light border */
+  border-radius: 5px; /* Rounded corners for inputs */
 }
