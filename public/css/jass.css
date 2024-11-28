@@ -1,6 +1,7 @@
 /* Defining global variable */
 :root {
   --neongreen: #39ff14;
+  --txt: Helvetica Neue;
 }
 
 main {
@@ -8,17 +9,60 @@ main {
   justify-content: center; /* Center horizontally */
   min-height: 66vh; /* Ensure the main section takes at least full viewport height */
   text-align: center; /* Make sure text inside main is centered */
+  position: relative;
 }
 
 h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--txt);
   text-align: center;
   background-color: orange; /* Orange background for the pill */
   color: var(--neongreen); /* Neon green text color */
-  padding: 20px 20px; /* Padding to make it pill-shaped */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
   border-radius: 50px; /* Rounded corners (pill shape) */
   border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
   display: inline-block; /* Makes the heading fit to the text size */
   font-size: 2em; /* Adjust font size as needed */
+  width: 50%;
+  max-width: 600px;
   margin: 20px auto;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+h1:hover {
+  background-color: navajowhite;
+  color: orange;
+}
+
+/* New container around the ul */
+.ul-container {
+  border: 2px solid var(--neongreen);
+  border-radius: 10px;
+  padding: 10px;
+}
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 6%;
+}
+
+li {
+  font-family: var(--txt);
+  margin: 10px 0;
+}
+
+#post-title {
+  color: black;
+  font-style: italic;
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
 }
