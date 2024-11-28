@@ -1,0 +1,24 @@
+/* Defining global variable */
+:root {
+  --neongreen: #39ff14;
+}
+
+main {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  min-height: 66vh; /* Ensure the main section takes at least full viewport height */
+  text-align: center; /* Make sure text inside main is centered */
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 20px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
+  font-size: 2em; /* Adjust font size as needed */
+  margin: 20px auto;
+}
