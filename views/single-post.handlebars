@@ -1,7 +1,5 @@
 <section class="single-post-container">
-{{> post-body post}} 
-
-<!-- Write out HTML what to be displayed from post -->
+{{> post-body postData}} 
 
 {{#if session.user_id}}
 <div class="comment-container">
@@ -15,9 +13,9 @@
     </form>
 </div>
 {{/if}}
-
-{{> comments post.comments}}
-
+{{#each postData.Comments as |comment| }}
+{{> comment comment}}
+{{/each}}
 </section>
 
 {{#if session.user_id}}

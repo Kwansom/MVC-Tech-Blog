@@ -70,9 +70,9 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
   res.render("new-post", { session: req.session }); // Render the template for creating a new post
 });
 
-router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
-  res.render("edit-post", { session: req.session }); // Render the template page for editing a post
-});
+// router.get("/dashboard/edit", ensureAuthenticated, (req, res) => {
+//   res.render("edit-post", { session: req.session }); // Render the template page for editing a post
+// });
 
 // GET post and comments
 router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
@@ -80,11 +80,24 @@ router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment, include: User }, User], // include comments and user
     });
-    if (!post) return res.status(404).send("Post not found");
-    res.render("single-post", { post });
+    const postData = post.get({ plain: true });
+    console.log(postData);
+    if (!postData) return res.status(404).send("Post not found");
+    res.render("single-post", { postData, session: req.session });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetching post");
+  }
+});
+
+// Handles user log-out route
+router.get("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.redirect("/"); // Redirect to homepage after logging out
+    });
+  } else {
+    res.status(404).end();
   }
 });
 

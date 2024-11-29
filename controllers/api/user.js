@@ -66,16 +66,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Handles user log-out route
-router.post("/logout", (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.redirect("/"); // Redirect to homepage after logging out
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+
 
 // Export the router so it can be used in server.js
 module.exports = router;

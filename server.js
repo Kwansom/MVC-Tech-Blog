@@ -6,13 +6,14 @@ const session = require("express-session"); // to store user session data
 const routes = require("./controllers"); // routes
 const sequelize = require("./config/connection"); // connection to db
 const SequelizeStore = require("connect-session-sequelize")(session.Store); // used to store session data in the db
+const helpers = require("./utils/helpers");
 
 // Setting up Express Application
 const app = express(); // runs server
 const PORT = process.env.PORT || 3001;
-
+const hbs = exphbs.create({ helpers });
 // Handlebars setup
-app.engine("handlebars", exphbs.engine()); // registers view engine as handlebars
+app.engine("handlebars", hbs.engine); // registers view engine as handlebars
 app.set("view engine", "handlebars"); // tells Express to look for views to render a page
 
 // Middleware

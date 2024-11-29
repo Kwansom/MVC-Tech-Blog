@@ -10,24 +10,24 @@ const withAuth = require("../utils/auth");
 router.use(withAuth);
 
 // GET route to render the user's dashboard
-router.get("/", async (req, res) => {
-  try {
-    // Fetch posts created by the logged-in user
-    const results = await Post.findAll({
-      where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
-      order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
-    });
-    // Serializing post results data
-    const posts = results.map((item) => {
-      return item.get({ plain: true });
-    });
-    // Render the dashboard template, passing the user's posts
-    res.render("dashboard", { posts });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Error retrieving posts");
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     // Fetch posts created by the logged-in user
+//     const results = await Post.findAll({
+//       where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
+//       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
+//     });
+//     // Serializing post results data
+//     const posts = results.map((item) => {
+//       return item.get({ plain: true });
+//     });
+//     // Render the dashboard template, passing the user's posts
+//     res.render("dashboard", { posts });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Error retrieving posts");
+//   }
+// });
 
 // GET route to render the 'new post' form
 router.get("/dashboard/new", (req, res) => {
@@ -68,14 +68,14 @@ router.get("/edit/:id", async (req, res) => {
     }
 
     // Render the edit form with the existing post data
-    res.render("edit-post", { post });
+    res.render("edit-post", { post, session: req.session });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error retrieving post");
   }
 });
 
-// Get a single post
+// // Get a single post
 router.get("/post/:id", async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
@@ -87,6 +87,7 @@ router.get("/post/:id", async (req, res) => {
     }
 
     const postData = post.get({ plain: true });
+
     res.render("single-post", { post: postData }); // Render the post page with the post details
   } catch (err) {
     console.error(err);
