@@ -33,15 +33,6 @@ body:hover::before {
   opacity: 0.2; /* Lower opacity when hovering */
 }
 
-/* body {
-  background-image: url("/assets/IMG_6873.JPG");
-  background-repeat: no-repeat;
-  background-size: auto 50%;
-  background-position: right center;
-  margin: 0;
-  padding: 0;
-  background-attachment: fixed; /* Optional: Make background fixed when scrolling } */
-
 .main-nav {
   font-family: var(--txt);
   color: black;
@@ -83,12 +74,12 @@ main {
   font-family: var(--txt);
   text-align: center;
   background-color: orange; /* Orange background for the pill */
-  color: var(--neongreen); /* Neon green text color */
+  color: var(--neongreen);
   padding: 20px 30px; /* Padding to make it pill-shaped */
   border-radius: 50px; /* Rounded corners (pill shape) */
   border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
   display: inline-block; /* Makes the heading fit to the text size */
-  font-size: 2em; /* Adjust font size as needed */
+  font-size: 2em;
   width: 50%;
   max-width: 600px;
   margin: 20px auto;
@@ -130,11 +121,16 @@ li {
   font-size: 30px;
   text-align: center;
   background-color: orange; /* Orange background for the pill */
-  color: var(--neongreen); /* Neon green text color */
+  color: var(--neongreen);
   padding: 20px 30px; /* Padding to make it pill-shaped */
   border-radius: 50px; /* Rounded corners (pill shape) */
   border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
   display: inline-block; /* Makes the heading fit to the text size */
+}
+
+#post-title:hover {
+  background-color: navajowhite;
+  color: orange;
 }
 
 a {
@@ -146,7 +142,7 @@ a {
   font-family: var(--txt);
   text-align: center;
   background-color: orange; /* Orange background for the pill */
-  color: var(--neongreen); /* Neon green text color */
+  color: var(--neongreen);
   padding: 20px 30px; /* Padding to make it pill-shaped */
   border-radius: 50px; /* Rounded corners (pill shape) */
   border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
@@ -167,8 +163,9 @@ a {
 #create-dash {
   font-family: var(--txt);
   font-size: 17px;
-  color: black;
+  color: var(--neongreen);
   background-color: orange;
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
   padding: 12px 25px;
   border-radius: 50px;
   transition: all 0.3s ease;
@@ -248,9 +245,9 @@ textarea.form-input {
   width: 100%; /* Make it take up the full width of the parent container */
   padding: 10px; /* Add padding for better readability */
   font-size: 16px; /* Match font size to other inputs */
-  border-radius: 5px; /* Optional: add border radius to match input fields */
+  border-radius: 5px; /* add border radius to match input fields */
   border: 1px solid #ccc; /* Make border similar to other inputs */
-  resize: vertical; /* Optional: allows users to resize the textarea vertically */
+  resize: vertical; /* allows users to resize the textarea vertically */
   background-color: orange; /* Orange background for the pill */
   color: var(--neongreen); /* Neon green text color */
   padding: 20px 30px; /* Padding to make it pill-shaped */
@@ -260,7 +257,7 @@ textarea.form-input {
 }
 
 textarea.form-input:focus {
-  border-color: #66afe9; /* Optional: highlight the textarea border on focus */
+  border-color: #66afe9; /* highlight the textarea border on focus */
   outline: none; /* Remove default focus outline */
 }
 
@@ -458,6 +455,12 @@ p {
   margin: 10px 0;
   border: 3px solid #ccc;
   border-radius: 5px;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
 }
 
 #submit-btn-comment {
