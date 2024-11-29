@@ -3,7 +3,7 @@ const { User } = require("../../models/user");
 const bcrypt = require("bcryptjs");
 const router = express.Router();
 
-// Handles login form submission
+// Handles login form route
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;

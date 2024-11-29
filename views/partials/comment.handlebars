@@ -2,12 +2,13 @@
   <div class="comments">
     <div class="card post comment-box">
       <div class="card-body post-body">
-        <div class="card-text comment-body">
+        <div class="card-text comment-body" id="comment-content">
           {{content}}
         </div>
-        <div class="comment-author">
-          -{{User.username}},
-          {{createdAt}}
+        <div class="comment-author" id="commenter">
+          -
+          {{User.username}},
+          {{format_date createdAt}}
         </div>
       </div>
     </div>

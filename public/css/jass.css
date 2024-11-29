@@ -277,23 +277,23 @@ p {
 
 #signup-form {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  padding: 20px; 
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   border: 2px solid var(--neongreen);
-  border-radius: 10px; 
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); 
-  background-color: #fff; 
-  max-width: 400px; 
-  width: 100%; 
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
 }
 
 #signup-form input {
-  width: 100%; 
-  padding: 10px; 
-  margin: 10px 0; 
-  border: 3px solid #ccc; 
-  border-radius: 5px; 
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 3px solid #ccc;
+  border-radius: 5px;
 }
 
 #username-label,
@@ -342,21 +342,42 @@ p {
 
 #login-form {
   display: flex;
-  flex-direction: column; 
-  align-items: center; 
-  padding: 20px; 
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
   border: 2px solid var(--neongreen);
-  border-radius: 10px; 
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1); 
-  background-color: #fff; 
-  max-width: 400px; 
-  width: 100%; 
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  max-width: 400px;
+  width: 100%;
 }
 
 #login-form input {
-  width: 100%; 
-  padding: 10px; 
-  margin: 10px 0; 
-  border: 3px solid #ccc; 
-  border-radius: 5px; 
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Single post and comment */
+#comment-content {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 20px;
+}
+
+#commenter {
+  font-family: var(--txt);
+  color: black;
+  font-size: 20px;
+}
+
+#post-name {
+  font-family: var(--txt);
+  color: black;
+  font-style: italic;
+  font-size: 30px;
 }
