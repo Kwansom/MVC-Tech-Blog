@@ -74,7 +74,7 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
 //   res.render("edit-post", { session: req.session }); // Render the template page for editing a post
 // });
 
-// GET post and comments
+// GET post and comments // THIS IS FIRING
 router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
   try {
     console.log("Fetcing post with ID", req.params.id);

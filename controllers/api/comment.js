@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
 });
 
 //  Should go into Post routes
-// Create new comment
+// Create new comment // THIS IS FIRING AND WORKING
 router.post("/:id", async (req, res) => {
   try {
     console.log("Request Body:", req.body);
@@ -37,7 +37,8 @@ router.post("/:id", async (req, res) => {
       user_id: req.session.user_id,
     });
     console.log("New Comment created:", newComment);
-    res.redirect(`/post/${req.params.id}`); // redirect to new post
+    res.status(200).json({ message: "Comment posted successfully!" });
+    // res.redirect(`dashboard/post/${req.params.id}`); // redirect to new post
   } catch (err) {
     console.error(err);
     res.status(500).send("Error creating comment");
