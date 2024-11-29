@@ -8,7 +8,7 @@ const router = express.Router(); // Create a router instance
 // Define all routes
 router.use("/user", userRoutes); // User routes (signup, login, logout)
 router.use("/comment", commentRoutes);
-router.use("/post", postRoutes); // Post routes (dashboard, create, update, delete)
+// router.use("/post", postRoutes); // Post routes (dashboard, create, update, delete)
 
 // Export the router instance
 module.exports = router;

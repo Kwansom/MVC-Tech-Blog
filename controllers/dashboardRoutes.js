@@ -9,26 +9,6 @@ const withAuth = require("../utils/auth");
 // Middleware to ensure the user is logged in before accessing the dashboard
 router.use(withAuth);
 
-// GET route to render the user's dashboard
-// router.get("/", async (req, res) => {
-//   try {
-//     // Fetch posts created by the logged-in user
-//     const results = await Post.findAll({
-//       where: { user_id: req.session.user_id }, // Assuming user ID is stored in session
-//       order: [["createdAt", "DESC"]], // Order by creation date (most recent first)
-//     });
-//     // Serializing post results data
-//     const posts = results.map((item) => {
-//       return item.get({ plain: true });
-//     });
-//     // Render the dashboard template, passing the user's posts
-//     res.render("dashboard", { posts });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Error retrieving posts");
-//   }
-// });
-
 // GET route to render the 'new post' form
 router.get("/dashboard/new", (req, res) => {
   res.render("new-post"); // Render the template for creating a new post
@@ -76,24 +56,25 @@ router.get("/edit/:id", async (req, res) => {
 });
 
 // // Get a single post
-router.get("/post/:id", async (req, res) => {
-  try {
-    const post = await Post.findByPk(req.params.id, {
-      include: [{ model: Comment, include: User }, User], // Include comment, include content and the post creator
-    });
+// router.get("/post/:id", async (req, res) => {
+//   try {
+//     console.log("Testing same GET??");
+//     const post = await Post.findByPk(req.params.id, {
+//       include: [{ model: Comment, include: User }, User], // Include comment, include content and the post creator
+//     });
 
-    if (!post) {
-      return res.status(404).send("Post not found");
-    }
+//     if (!post) {
+//       return res.status(404).send("Post not found");
+//     }
 
-    const postData = post.get({ plain: true });
+//     const postData = post.get({ plain: true });
 
-    res.render("single-post", { post: postData }); // Render the post page with the post details
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching post");
-  }
-});
+//     res.render("single-post", { post: postData }); // Render the post page with the post details
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error fetching post");
+//   }
+// });
 
 //Update blog post
 // router.put("/dashboard/post/:id", async (req, res) => {

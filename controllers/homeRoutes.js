@@ -77,11 +77,12 @@ router.get("/dashboard/new", ensureAuthenticated, (req, res) => {
 // GET post and comments
 router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
   try {
+    console.log("Fetcing post with ID", req.params.id);
     const post = await Post.findByPk(req.params.id, {
       include: [{ model: Comment, include: User }, User], // include comments and user
     });
     const postData = post.get({ plain: true });
-    console.log(postData);
+    // console.log(postData);
     if (!postData) return res.status(404).send("Post not found");
     res.render("single-post", { postData, session: req.session });
   } catch (err) {
@@ -192,7 +193,6 @@ router.get("/logout", (req, res) => {
 //     res.status(500).send("Error deleting post");
 //   }
 // });
-
 
 // Should go into post routes
 // // Create new blog post

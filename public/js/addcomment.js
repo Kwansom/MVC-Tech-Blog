@@ -5,15 +5,15 @@ async function commentFormHandler(event) {
     .querySelector('input[name="comment-body"]')
     .value.trim();
 
-  const post_id = window.location.toString().split("/")[
-    window.location.toString().split("/").length - 1
-  ];
+  const post_id = window.location.pathname.split("/").pop();
+  // const post_id = window.location.toString().split("/")[
+  //   window.location.toString().split("/").length - 1
+  // ];
 
   if (comment_body) {
-    const response = await fetch("/api/comment", {
+    const response = await fetch(`/api/comment/${post_id}`, {
       method: "POST",
       body: JSON.stringify({
-        post_id,
         comment_body,
       }),
       headers: {
