@@ -226,7 +226,7 @@ p {
   font-family: var(--txt);
   color: black;
   font-style: italic;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 /* Dashboard New Post */
@@ -268,6 +268,7 @@ p {
 }
 
 /* Sign up */
+
 #create-title {
   font-family: var(--txt);
   color: black;
@@ -319,6 +320,7 @@ p {
 }
 
 /* Login page */
+
 #login-title {
   font-family: var(--txt);
   color: black;
@@ -362,6 +364,7 @@ p {
 }
 
 /* Single post and comment */
+
 #comment-content {
   font-family: var(--txt);
   color: black;
@@ -380,4 +383,45 @@ p {
   color: black;
   font-style: italic;
   font-size: 30px;
+  text-align: center;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
+}
+
+#comment-label {
+  font-family: var(--txt);
+  color: black;
+  font-size: 15px;
+  text-align: center;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
+}
+#comment-input {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+}
+
+#submit-btn-comment {
+  padding: 6px 6px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+#submit-btn-comment:hover {
+  background-color: var(--neongreen);
+  color: orange;
 }

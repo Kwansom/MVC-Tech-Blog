@@ -6,22 +6,22 @@ const router = express.Router(); // Initialize a new router
 const withAuth = require("../../utils/auth");
 
 // Get all posts for the dashboard
-router.get("/dashboard", async (req, res) => {
-  try {
-    if (!req.session.user_id) {
-      return res.redirect("/login");
-    }
+// router.get("/dashboard", async (req, res) => {
+//   try {
+//     if (!req.session.user_id) {
+//       return res.redirect("/login");
+//     }
 
-    const posts = await Post.findAll({
-      where: { userId: req.session.user_id },
-      order: [["createdAt", "DESC"]], // Order posts by the newest first
-    });
-    res.render("dashboard", { posts }); // Render the homepage with the posts
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching posts");
-  }
-});
+//     const posts = await Post.findAll({
+//       where: { userId: req.session.user_id },
+//       order: [["createdAt", "DESC"]], // Order posts by the newest first
+//     });
+//     res.render("dashboard", { posts }); // Render the homepage with the posts
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send("Error fetching posts");
+//   }
+// });
 
 // Get post
 router.get("/post/:id", async (req, res) => {
