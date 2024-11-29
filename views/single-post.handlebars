@@ -14,9 +14,11 @@
 </div>
 {{/if}}
 {{#each postData.Comments as |comment| }}
-{{> comment comment}}
+<div class="render-comment">
+
+<p>{{> comment comment}}</p>
 {{/each}}
-</section>
+</div>
 
 {{#if session.user_id}}
 <script src="/js/addComment.js"></script>
