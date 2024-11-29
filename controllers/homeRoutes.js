@@ -193,21 +193,6 @@ router.get("/logout", (req, res) => {
 //   }
 // });
 
-//  Should go into Post routes
-// // Create new comment
-// router.post("/comment/:postId", async (req, res) => {
-//   try {
-//     await Comment.create({
-//       content: req.body.content,
-//       postId: req.params.postId,
-//       userId: req.session.userId,
-//     });
-//     res.redirect("/post/${req.params.postId}"); // redirect to new post
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error creating comment");
-//   }
-// });
 
 // Should go into post routes
 // // Create new blog post

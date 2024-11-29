@@ -24,20 +24,36 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", withAuth, (req, res) => {
-  if (req.session) {
-    Comment.create({
-      comment_body: req.body.comment_body,
-      post_id: req.body.post_id,
+//  Should go into Post routes
+// Create new comment
+router.post("/comment", async (req, res) => {
+  try {
+    await Comment.create({
+      content: req.body.content,
+      post_id: req.params.postId,
       user_id: req.session.user_id,
-    })
-      .then((commentData) => res.json(commentData))
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json(err);
-      });
+    });
+    res.redirect("/post/${req.params.postId}"); // redirect to new post
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error creating comment");
   }
 });
+
+// router.post("/", withAuth, (req, res) => {
+//   if (req.session) {
+//     Comment.create({
+//       comment_body: req.body.comment_body,
+//       post_id: req.body.post_id,
+//       user_id: req.session.user_id,
+//     })
+//       .then((commentData) => res.json(commentData))
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(400).json(err);
+//       });
+//   }
+// });
 
 router.put("/:id", withAuth, (req, res) => {
   Comment.update(
