@@ -334,6 +334,12 @@ p {
   margin: 10px 0;
   border: 3px solid #ccc;
   border-radius: 5px;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
 }
 
 #username-label,
@@ -406,6 +412,12 @@ p {
   margin: 10px 0;
   border: 3px solid #ccc;
   border-radius: 5px;
+  background-color: orange; /* Orange background for the pill */
+  color: var(--neongreen); /* Neon green text color */
+  padding: 20px 30px; /* Padding to make it pill-shaped */
+  border-radius: 50px; /* Rounded corners (pill shape) */
+  border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
+  display: inline-block; /* Makes the heading fit to the text size */
 }
 
 /* Single post and comment */
