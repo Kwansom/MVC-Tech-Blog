@@ -24,21 +24,19 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//  Should go into Post routes
 // Create new comment // THIS IS FIRING AND WORKING
 router.post("/:id", async (req, res) => {
   try {
-    console.log("Request Body:", req.body);
-    console.log("Post ID from params:", req.params.id);
+    // console.log("Request Body:", req.body);
+    // console.log("Post ID from params:", req.params.id);
 
     const newComment = await Comment.create({
       content: req.body.comment_body,
       post_id: req.params.id,
       user_id: req.session.user_id,
     });
-    console.log("New Comment created:", newComment);
+    // console.log("New Comment created:", newComment);
     res.status(200).json({ message: "Comment posted successfully!" });
-    // res.redirect(`dashboard/post/${req.params.id}`); // redirect to new post
   } catch (err) {
     console.error(err);
     res.status(500).send("Error creating comment");
@@ -69,6 +67,7 @@ router.put("/:id", withAuth, (req, res) => {
     });
 });
 
+// Delete by user
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     // Find the comment by ID

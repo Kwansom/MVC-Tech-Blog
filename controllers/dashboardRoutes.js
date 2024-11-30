@@ -9,10 +9,6 @@ const withAuth = require("../utils/auth");
 // Middleware to ensure the user is logged in before accessing the dashboard
 router.use(withAuth);
 
-// GET route to render the 'new post' form
-router.get("/dashboard/new", (req, res) => {
-  res.render("new-post"); // Render the template for creating a new post
-});
 
 // POST route to create a new post
 router.post("/post", async (req, res) => {

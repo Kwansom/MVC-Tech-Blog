@@ -6,9 +6,6 @@ async function commentFormHandler(event) {
     .value.trim();
 
   const post_id = window.location.pathname.split("/").pop();
-  // const post_id = window.location.toString().split("/")[
-  //   window.location.toString().split("/").length - 1
-  // ];
 
   if (comment_body) {
     const response = await fetch(`/api/comment/${post_id}`, {

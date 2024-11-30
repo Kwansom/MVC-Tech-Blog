@@ -12,6 +12,7 @@ const helpers = require("./utils/helpers");
 const app = express(); // runs server
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({ helpers });
+
 // Handlebars setup
 app.engine("handlebars", hbs.engine); // registers view engine as handlebars
 app.set("view engine", "handlebars"); // tells Express to look for views to render a page

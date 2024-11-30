@@ -5,9 +5,9 @@ module.exports = {
     const day = newDate.getDate();
     const year = newDate.getFullYear();
 
-    const hours = newDate.getHours().toString().padStart(2, "0"); // Pad with 0 for single-digit hours
-    const minutes = newDate.getMinutes().toString().padStart(2, "0"); // Pad with 0 for single-digit minutes
-    const seconds = newDate.getSeconds().toString().padStart(2, "0"); // Pad with 0 for single-digit seconds
+    const hours = newDate.getHours().toString().padStart(2, "0"); // Pad with 0 for single-digit
+    const minutes = newDate.getMinutes().toString().padStart(2, "0");
+    const seconds = newDate.getSeconds().toString().padStart(2, "0");
 
     return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
   },

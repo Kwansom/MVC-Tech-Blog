@@ -1,6 +1,6 @@
 const loginFormHandler = async (event) => {
   event.preventDefault();
-  // console.log("testing log-in");
+
 
   const email = document.querySelector("#email-login").value.trim();
   const username = document.querySelector("#username-login").value.trim();
@@ -15,7 +15,6 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
       document.location.replace("/");
     } else {
       alert(response.statusText);

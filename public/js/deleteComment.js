@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const comments = document.querySelectorAll(".render-comment");
 
   comments.forEach((comment) => {
-    // Show a "delete" indicator on hover if the comment is deletable
     if (comment.getAttribute("data-can-delete") === "true") {
       comment.addEventListener("mouseenter", function () {
         // Change the cursor to indicate that the comment is clickable
         comment.style.cursor = "pointer";
-        comment.style.opacity = "0.7"; // Optional: Add a hover effect to show that it's clickable
+        comment.style.opacity = "0.7";
       });
 
       comment.addEventListener("mouseleave", function () {
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
           "Are you sure you want to delete your comment?"
         );
         if (!confirmDelete) {
-          return; // If user cancels, do nothing
+          return;
         }
 
         // Send the DELETE request to the backend
