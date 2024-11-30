@@ -150,6 +150,17 @@ a:hover {
   transition: all 0.3s ease;
 }
 
+.center-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 80%; /* Adjust this if needed */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Perfect centering */
+}
+
 #create-dash:hover {
   background-color: navajowhite;
   color: orange;
