@@ -34,10 +34,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// // Login route
-// router.get("/login", async (req, res) => {
-//   res.render("login");
-// });
 
 router.post("/login", async (req, res) => {
   try {
