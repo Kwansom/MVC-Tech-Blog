@@ -55,44 +55,6 @@ router.get("/edit/:id", async (req, res) => {
   }
 });
 
-// // Get a single post
-// router.get("/post/:id", async (req, res) => {
-//   try {
-//     console.log("Testing same GET??");
-//     const post = await Post.findByPk(req.params.id, {
-//       include: [{ model: Comment, include: User }, User], // Include comment, include content and the post creator
-//     });
-
-//     if (!post) {
-//       return res.status(404).send("Post not found");
-//     }
-
-//     const postData = post.get({ plain: true });
-
-//     res.render("single-post", { post: postData }); // Render the post page with the post details
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error fetching post");
-//   }
-// });
-
-//Update blog post
-// router.put("/dashboard/post/:id", async (req, res) => {
-//   try {
-//     const post = await Post.findByPk(req.params.id);
-//     if (post.userId !== req.session.userId) {
-//       return res.status(403).send("You are not authorized to edit this post");
-//     }
-//     post.title = req.body.title;
-//     post.contents = req.body.contents;
-//     await post.save();
-//     res.redirect("/dashboard");
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).send("Error updating post");
-//   }
-// });
-
 // PUT route to update an existing post
 router.put("/post/:id", async (req, res) => {
   try {

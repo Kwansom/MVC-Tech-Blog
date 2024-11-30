@@ -437,6 +437,7 @@ p {
   display: inline-block; /* Makes the heading fit to the text size */
 }
 #comment-input {
+  font-size: 22px;
   width: 50%;
   padding: 10px;
   margin: 10px 0;
@@ -478,4 +479,9 @@ p {
   border-radius: 50px; /* Rounded corners (pill shape) */
   border: 2px solid var(--neongreen); /* Thin neon green outline around the pill */
   display: inline-block; /* Makes the heading fit to the text size */
+}
+
+.render-comment:hover {
+  background-color: var(--neongreen);
+  color: orange;
 }

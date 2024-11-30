@@ -18,6 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
       comment.addEventListener("click", async function () {
         const commentId = comment.getAttribute("data-comment-id");
 
+        // Confirm deletion
+        const confirmDelete = window.confirm(
+          "Are you sure you want to delete your comment?"
+        );
+        if (!confirmDelete) {
+          return; // If user cancels, do nothing
+        }
+
         // Send the DELETE request to the backend
         const response = await fetch(`/api/comment/${commentId}`, {
           method: "DELETE",
