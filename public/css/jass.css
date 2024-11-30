@@ -491,3 +491,14 @@ p {
   background-color: var(--neongreen);
   color: orange;
 }
+
+@media screen and (max-width: 992px) {
+  .card {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+  }
+}
