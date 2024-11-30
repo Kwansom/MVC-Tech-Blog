@@ -14,12 +14,16 @@
 </div>
 {{/if}}
 {{#each postData.Comments as |comment| }}
-<div class="render-comment">
 
-<p>{{> comment comment}}</p>
+{{!-- WHAT WAS WORKING * --}}
+<div class="render-comment" data-comment-id="{{comment.id}}" data-can-delete="{{comment.canDelete}}">
+    <p class="delete-comment">
+{{> comment comment}}</p> 
+
 {{/each}}
 </div>
 
 {{#if session.user_id}}
 <script src="/js/addComment.js"></script>
+<script src="/js/deleteComment.js"></script>
 {{/if}}

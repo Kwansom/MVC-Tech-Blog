@@ -83,6 +83,13 @@ router.get("/dashboard/post/:id", ensureAuthenticated, async (req, res) => {
     });
     const postData = post.get({ plain: true });
     // console.log(postData);
+    
+    // NEW ADDED //
+    postData.Comments.forEach((comment) => {
+      comment.canDelete = comment.user_id === req.session.user_id; // Check if logged-in user is the comment author
+    });
+    // NEW ADDED// 
+
     if (!postData) return res.status(404).send("Post not found");
     res.render("single-post", { postData, session: req.session });
   } catch (err) {
