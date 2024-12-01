@@ -45,6 +45,10 @@ To set up and run the blog on your local machine:
 
     •	Start the application server: npm start
 
+## Link
+
+To view the deployed application click [here!](https://mvc-tech-blog-1dzl.onrender.com/)
+
 ## Questions
 
 If you have any questions, please contact me at [wansom.kun@gmail.com](mailto:wansom.kun@gmail.com).
